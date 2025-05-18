@@ -11,7 +11,11 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 // import FavoritesContextProvider from './store/context/favorites-context';
 import { Provider } from 'react-redux';
 import { store } from './store/redux/store';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback } from 'react';
 
+// Giữ splash screen hiển thị cho đến khi chúng ta sẵn sàng render
+SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
 
@@ -37,12 +41,17 @@ function DrawerNavigator() {
 }
 
 export default function App() {
+  const onLayoutRootView = useCallback(async () => {
+    // Ẩn splash screen sau khi app đã sẵn sàng
+    await SplashScreen.hideAsync();
+  }, []);
+
   return (
     <>
       <StatusBar style='light' />
-      {/* <FavoritesContextProvider> */}
+      {/* <FavoritesContextProvider> */}  
       <Provider store={store}>
-        <NavigationContainer>
+        <NavigationContainer onReady={onLayoutRootView}>
           <Stack.Navigator screenOptions={{
             headerStyle: { backgroundColor: "#351401" },
             headerTintColor: "white",
