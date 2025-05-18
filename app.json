@@ -28,7 +28,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.viggad2003.myrecipebook"
+      "package": "com.viggad2003.myrecipebook",
+      "namespace": "com.viggad2003.myrecipebook"
     },
     "web": {
       "favicon": "./assets/favicon.png"
